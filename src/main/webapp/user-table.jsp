@@ -160,7 +160,8 @@
                                         <td>${usersModel.email}</td>
                                         <td>${usersModel.rolesModel.name}</td>
                                         <td>
-                                            <a href="#" class="btn btn-sm btn-primary">Sửa</a>
+                                            <a href="/crm/user-update?id=${usersModel.id}"
+                                               class="btn btn-sm btn-primary">Sửa</a>
                                             <a class="btn btn-sm btn-danger"
                                                onclick="deleteUser(this,${usersModel.id})">Xóa</a>
                                             <a href="/crm/user-details" class="btn btn-sm btn-info">Xem</a>

@@ -20,6 +20,17 @@ public class UsersService {
     }
 
     /**
+     * phương thức tìm user theo id
+     *
+     * @param id (tham số id của user cần tìm)
+     * @return (trả về user nếu tìm thấy, nếu không tìm thấy thì trả về null)
+     */
+    public UsersModel getUserById(int id) {
+        UsersRepository usersRepository = new UsersRepository();
+        return usersRepository.getUserById(id);
+    }
+
+    /**
      * phương thức thêm user vào Database
      *
      * @param email    (tham số email của user muốn thêm)
@@ -34,8 +45,36 @@ public class UsersService {
             return false;
         }
 
+        if (avatar.equals("")) {
+            avatar = null;
+        }
+
         UsersRepository usersRepository = new UsersRepository();
         int result = usersRepository.addUser(email, password, fullname, avatar, roleId);
+        return result > 0;
+    }
+
+    /**
+     * phương thức cập nhật user trong Database
+     *
+     * @param id       (tham số id của user cần update)
+     * @param fullname (tham số fullname của user cần update)
+     * @param email    (tham số email của user cần update)
+     * @param avatar   (tham số avatar của user cần update)
+     * @param roleId   (tham số roleId của user cần update)
+     * @return (trả về true nếu update thành công, nếu không thì trả về false)
+     */
+    public boolean updateUser(int id, String fullname, String email, String avatar, int roleId) {
+        if (!dataValidate(email, "password", fullname, avatar, roleId)) {
+            return false;
+        }
+
+        if (avatar.equals("")) {
+            avatar = null;
+        }
+
+        UsersRepository usersRepository = new UsersRepository();
+        int result = usersRepository.updateUser(id, fullname, email, avatar, roleId);
         return result > 0;
     }
 

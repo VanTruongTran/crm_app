@@ -55,6 +55,42 @@ public class UsersRepository {
     }
 
     /**
+     * phương thức tìm user theo id
+     *
+     * @param id (tham số id của user cần tìm)
+     * @return (trả về user nếu tìm thấy, nếu không tìm thấy thì trả về null)
+     */
+    public UsersModel getUserById(int id) {
+        final String QUERY = "SELECT * FROM users u WHERE u.id = ?";
+        UsersModel usersModel = null;
+
+        try {
+            Connection connection = JDBCConnection.getMySQLConnection();
+            PreparedStatement statement = connection.prepareStatement(QUERY);
+            statement.setInt(1, id);
+
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                usersModel = new UsersModel();
+                usersModel.setId(resultSet.getInt("id"));
+                usersModel.setEmail(resultSet.getString("email"));
+                usersModel.setPassword(null);
+                usersModel.setFullname(resultSet.getString("fullname"));
+                usersModel.setAvatar(resultSet.getString("avatar"));
+
+                RolesService rolesService = new RolesService();
+                RolesModel rolesModel = rolesService.getRoleById(resultSet.getInt("role_id"));
+                usersModel.setRolesModel(rolesModel);
+            }
+            connection.close();
+        } catch (SQLException ex) {
+            System.out.println("Find error in 'getUserById', " + ex.getMessage());
+            ex.printStackTrace();
+        }
+        return usersModel;
+    }
+
+    /**
      * phương thức thêm user vào Database
      *
      * @param email    (tham số email của user muốn thêm)
@@ -141,8 +177,42 @@ public class UsersRepository {
             statement.setInt(1, id);
 
             result = statement.executeUpdate();
+            connection.close();
         } catch (SQLException ex) {
             System.out.println("Find error in 'deleteUserById', " + ex.getMessage());
+            ex.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * phương thức cập nhật user trong Database
+     *
+     * @param id       (tham số id của user cần update)
+     * @param fullname (tham số fullname của user cần update)
+     * @param email    (tham số email của user cần update)
+     * @param avatar   (tham số avatar của user cần update)
+     * @param roleId   (tham số roleId của user cần update)
+     * @return (trả về 1 nếu update thành công, nếu không thì trả về 0)
+     */
+    public int updateUser(int id, String fullname, String email, String avatar, int roleId) {
+        final String QUERY = "UPDATE users u SET u.fullname = ?, u.email = ?, u.avatar = ?, u.role_id = ? WHERE u.id = ?";
+        int result = 0;
+
+        try {
+            Connection connection = JDBCConnection.getMySQLConnection();
+            PreparedStatement statement = connection.prepareStatement(QUERY);
+
+            statement.setString(1, fullname);
+            statement.setString(2, email);
+            statement.setString(3, avatar);
+            statement.setInt(4, roleId);
+            statement.setInt(5, id);
+
+            result = statement.executeUpdate();
+            connection.close();
+        } catch (SQLException ex) {
+            System.out.println("Find error in 'updateUser', " + ex.getMessage());
             ex.printStackTrace();
         }
         return result;

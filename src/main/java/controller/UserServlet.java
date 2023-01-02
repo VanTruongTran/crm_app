@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "UserServlet", urlPatterns = {"/user", "/user-add", "/user-details"})
+@WebServlet(name = "UserServlet", urlPatterns = {"/user", "/user-add", "/user-details", "/user-update"})
 public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,6 +28,10 @@ public class UserServlet extends HttpServlet {
 
             case "/user-details":
                 getDetails(req, resp);
+                break;
+
+            case "/user-update":
+                getUpdate(req, resp);
                 break;
 
             default:
@@ -58,5 +62,19 @@ public class UserServlet extends HttpServlet {
 
     private void getDetails(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/user-details.html").forward(req, resp);
+    }
+
+    private void getUpdate(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int id = Integer.parseInt(req.getParameter("id"));
+
+        UsersService usersService = new UsersService();
+        UsersModel usersModel = usersService.getUserById(id);
+        req.setAttribute("usersModel", usersModel);
+
+        RolesService rolesService = new RolesService();
+        List<RolesModel> rolesModelList = rolesService.getRolesList();
+        req.setAttribute("rolesModelList", rolesModelList);
+
+        req.getRequestDispatcher("/user-update.jsp").forward(req, resp);
     }
 }

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "UserApi", urlPatterns = {"/api/user-add", "/api/user-delete"})
+@WebServlet(name = "UserApi", urlPatterns = {"/api/user-add", "/api/user-delete", "/api/user-update"})
 public class UserApi extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,6 +28,10 @@ public class UserApi extends HttpServlet {
 
             case "/api/user-delete":
                 postDetele(req, resp);
+                break;
+
+            case "/api/user-update":
+                postUpdate(req, resp);
                 break;
 
             default:
@@ -65,6 +69,28 @@ public class UserApi extends HttpServlet {
 
         UsersService usersService = new UsersService();
         boolean success = usersService.deleteUserById(userId);
+
+        ResponseData responseData = new ResponseData(success, null, null);
+        Gson gson = new Gson();
+        String json = gson.toJson(responseData);
+
+        PrintWriter printWriter = resp.getWriter();
+        printWriter.write(json);
+        printWriter.flush();
+    }
+
+    private void postUpdate(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+
+        int id = Integer.parseInt(req.getParameter("id"));
+        String fullname = req.getParameter("fullname");
+        String email = req.getParameter("email");
+        String avatar = req.getParameter("avatar");
+        int roleId = Integer.parseInt(req.getParameter("roleId"));
+
+        UsersService usersService = new UsersService();
+        boolean success = usersService.updateUser(id, fullname, email, avatar, roleId);
 
         ResponseData responseData = new ResponseData(success, null, null);
         Gson gson = new Gson();
