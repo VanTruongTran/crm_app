@@ -50,6 +50,17 @@ public class UsersService {
     }
 
     /**
+     * phương thức xóa user khỏi Database
+     *
+     * @param id (tham số id của user cần xóa khỏi Database)
+     * @return (trả về true nếu xóa user thành công, nếu không thì trả về false)
+     */
+    public boolean deleteUserById(int id) {
+        UsersRepository usersRepository = new UsersRepository();
+        return usersRepository.deleteUserById(id) > 0;
+    }
+
+    /**
      * phương thức kiểm tra dữ liệu nhập hợp lệ
      *
      * @param email    (tham số email của user muốn thêm)

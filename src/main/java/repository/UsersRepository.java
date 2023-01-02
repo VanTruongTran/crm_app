@@ -124,4 +124,27 @@ public class UsersRepository {
         }
         return usersModelList;
     }
+
+    /**
+     * phương thức xóa user khỏi Database
+     *
+     * @param id (tham số id của user cần xóa khỏi Database)
+     * @return (trả về số user bị xóa khỏi Database)
+     */
+    public int deleteUserById(int id) {
+        final String QUERY = "DELETE FROM users u WHERE u.id = ?";
+        int result = 0;
+
+        try {
+            Connection connection = JDBCConnection.getMySQLConnection();
+            PreparedStatement statement = connection.prepareStatement(QUERY);
+            statement.setInt(1, id);
+
+            result = statement.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("Find error in 'deleteUserById', " + ex.getMessage());
+            ex.printStackTrace();
+        }
+        return result;
+    }
 }

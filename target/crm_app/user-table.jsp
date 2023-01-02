@@ -29,6 +29,7 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <![endif]-->
 </head>
 
@@ -160,7 +161,8 @@
                                         <td>${usersModel.rolesModel.name}</td>
                                         <td>
                                             <a href="#" class="btn btn-sm btn-primary">Sửa</a>
-                                            <a href="#" class="btn btn-sm btn-danger">Xóa</a>
+                                            <a class="btn btn-sm btn-danger"
+                                               onclick="deleteUser(this,${usersModel.id})">Xóa</a>
                                             <a href="/crm/user-details" class="btn btn-sm btn-info">Xem</a>
                                         </td>
                                     </tr>
@@ -196,6 +198,31 @@
     $(document).ready(function () {
         $('#example').DataTable();
     });
+</script>
+<script>
+    function deleteUser(This, id) {
+        if (confirm("ARE YOU SURE")) {
+            $.ajax({
+                url: "/crm/api/user-delete",
+                type: "post",
+                data: {
+                    id: id
+                },
+                success: function (response) {
+                    if (response.success) {
+                        alert("SUCCESSFUL");
+
+                        This.closest("tr").remove();
+                    } else {
+                        alert("UNSUCCESSFUL");
+                    }
+                },
+                error: function () {
+                    alert("ERROR");
+                }
+            });
+        }
+    }
 </script>
 </body>
 
