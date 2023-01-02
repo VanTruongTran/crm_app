@@ -152,17 +152,19 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Deshmukh</td>
-                                    <td>Prohaska</td>
-                                    <td>admin</td>
-                                    <td>
-                                        <a href="#" class="btn btn-sm btn-primary">Sửa</a>
-                                        <a href="#" class="btn btn-sm btn-danger">Xóa</a>
-                                        <a href="/crm/user-details" class="btn btn-sm btn-info">Xem</a>
-                                    </td>
-                                </tr>
+                                <c:forEach var="usersModel" items="${usersModelList}" varStatus="stt">
+                                    <tr>
+                                        <td>${stt.index + 1}</td>
+                                        <td>${usersModel.fullname}</td>
+                                        <td>${usersModel.email}</td>
+                                        <td>${usersModel.rolesModel.name}</td>
+                                        <td>
+                                            <a href="#" class="btn btn-sm btn-primary">Sửa</a>
+                                            <a href="#" class="btn btn-sm btn-danger">Xóa</a>
+                                            <a href="/crm/user-details" class="btn btn-sm btn-info">Xem</a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
                                 </tbody>
                             </table>
                         </div>

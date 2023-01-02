@@ -6,7 +6,7 @@ public class UsersModel {
     private String password;
     private String fullname;
     private String avatar;
-    private Integer roleId;
+    private RolesModel rolesModel;
 
     /* CONSTRUCTORS */
     public UsersModel() {
@@ -54,11 +54,11 @@ public class UsersModel {
         this.avatar = avatar;
     }
 
-    public Integer getRoleId() {
-        return roleId;
+    public RolesModel getRolesModel() {
+        return rolesModel;
     }
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
+    public void setRolesModel(RolesModel rolesModel) {
+        this.rolesModel = rolesModel;
     }
 }

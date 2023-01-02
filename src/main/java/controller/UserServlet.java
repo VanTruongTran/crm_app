@@ -1,7 +1,9 @@
 package controller;
 
 import model.RolesModel;
+import model.UsersModel;
 import service.RolesService;
+import service.UsersService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,6 +41,10 @@ public class UserServlet extends HttpServlet {
     }
 
     private void getList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UsersService usersService = new UsersService();
+        List<UsersModel> usersModelList = usersService.getUsersList();
+        req.setAttribute("usersModelList", usersModelList);
+
         req.getRequestDispatcher("/user-table.jsp").forward(req, resp);
     }
 

@@ -1,12 +1,16 @@
 package repository;
 
 import connection.JDBCConnection;
+import model.RolesModel;
 import model.UsersModel;
+import service.RolesService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsersRepository {
     /**
@@ -36,7 +40,11 @@ public class UsersRepository {
                 usersModel.setPassword(null);
                 usersModel.setFullname(resultSet.getString("fullname"));
                 usersModel.setAvatar(resultSet.getString("avatar"));
-                usersModel.setRoleId(resultSet.getInt("role_id"));
+
+                RolesService rolesService = new RolesService();
+                RolesModel rolesModel = rolesService.getRoleById(resultSet.getInt("role_id"));
+
+                usersModel.setRolesModel(rolesModel);
             }
             connection.close();
         } catch (SQLException ex) {
@@ -78,5 +86,42 @@ public class UsersRepository {
             ex.printStackTrace();
         }
         return 0;
+    }
+
+    /**
+     * phương thức lấy danh sách user từ Database
+     *
+     * @return (trả về danh sách user từ Database)
+     */
+    public List<UsersModel> getUsersList() {
+        final String QUERY = "SELECT * FROM users";
+        List<UsersModel> usersModelList = new ArrayList<UsersModel>();
+
+        try {
+            Connection connection = JDBCConnection.getMySQLConnection();
+            PreparedStatement statement = connection.prepareStatement(QUERY);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                UsersModel usersModel = new UsersModel();
+                usersModel.setId(resultSet.getInt("id"));
+                usersModel.setEmail(resultSet.getString("email"));
+                usersModel.setPassword(null);
+                usersModel.setFullname(resultSet.getString("fullname"));
+                usersModel.setAvatar(resultSet.getString("avatar"));
+
+                RolesService rolesService = new RolesService();
+                RolesModel rolesModel = rolesService.getRoleById(resultSet.getInt("role_id"));
+                usersModel.setRolesModel(rolesModel);
+
+                usersModelList.add(usersModel);
+            }
+            connection.close();
+        } catch (SQLException ex) {
+            System.out.println("Found error in 'getUsersList', " + ex.getMessage());
+            ex.printStackTrace();
+        }
+        return usersModelList;
     }
 }

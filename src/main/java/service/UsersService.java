@@ -3,7 +3,7 @@ package service;
 import model.UsersModel;
 import repository.UsersRepository;
 
-import java.sql.SQLException;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class UsersService {
@@ -37,6 +37,16 @@ public class UsersService {
         UsersRepository usersRepository = new UsersRepository();
         int result = usersRepository.addUser(email, password, fullname, avatar, roleId);
         return result > 0;
+    }
+
+    /**
+     * phương thức lấy danh sách user từ Database
+     *
+     * @return (trả về danh sách user từ Database)
+     */
+    public List<UsersModel> getUsersList() {
+        UsersRepository usersRepository = new UsersRepository();
+        return usersRepository.getUsersList();
     }
 
     /**
