@@ -167,7 +167,8 @@
                                         <td>${tasksModel.endDate}</td>
                                         <td>${tasksModel.statusModel.name}</td>
                                         <td>
-                                            <a href="#" class="btn btn-sm btn-primary">Sửa</a>
+                                            <a href="/crm/task-update?id=${tasksModel.id}"
+                                               class="btn btn-sm btn-primary">Sửa</a>
                                             <a class="btn btn-sm btn-danger"
                                                onclick="deleteTask(this,${tasksModel.id})">Xóa</a>
                                             <a href="#" class="btn btn-sm btn-info">Xem</a>

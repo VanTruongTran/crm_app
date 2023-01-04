@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "TaskApi", urlPatterns = {"/api/task-add", "/api/task-delete"})
+@WebServlet(name = "TaskApi", urlPatterns = {"/api/task-add", "/api/task-delete", "/api/task-update"})
 public class TaskApi extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,6 +28,10 @@ public class TaskApi extends HttpServlet {
 
             case "/api/task-delete":
                 postDelete(req, resp);
+                break;
+
+            case "/api/task-update":
+                postUpdate(req, resp);
                 break;
 
             default:
@@ -66,6 +70,30 @@ public class TaskApi extends HttpServlet {
 
         TasksService tasksService = new TasksService();
         boolean success = tasksService.deleteTask(id);
+
+        ResponseData responseData = new ResponseData(success, null, null);
+        Gson gson = new Gson();
+        String json = gson.toJson(responseData);
+
+        PrintWriter printWriter = resp.getWriter();
+        printWriter.write(json);
+        printWriter.flush();
+    }
+
+    private void postUpdate(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+
+        int id = Integer.parseInt(req.getParameter("id"));
+        String name = req.getParameter("name");
+        String startDate = req.getParameter("startDate");
+        String endDate = req.getParameter("endDate");
+        int userId = Integer.parseInt(req.getParameter("userId"));
+        int jobId = Integer.parseInt(req.getParameter("jobId"));
+        int statusId = Integer.parseInt(req.getParameter("statusId"));
+
+        TasksService tasksService = new TasksService();
+        boolean success = tasksService.updateTask(id, name, startDate, endDate, userId, jobId, statusId);
 
         ResponseData responseData = new ResponseData(success, null, null);
         Gson gson = new Gson();

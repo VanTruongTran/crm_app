@@ -17,14 +17,12 @@
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Menu CSS -->
     <link href="plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <!-- animation CSS -->
     <link href="css/animate.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
     <!-- color CSS -->
     <link href="css/colors/blue-dark.css" id="theme" rel="stylesheet">
-    <link rel="stylesheet" href="./css/custom.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -131,55 +129,90 @@
         <div class="container-fluid">
             <div class="row bg-title">
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <h4 class="page-title">Danh sách công việc</h4>
+                    <h4 class="page-title">Sửa công việc</h4>
                 </div>
-                <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12 text-right">
-                    <a href="/crm/task-add" class="btn btn-sm btn-success">Thêm mới</a>
-                </div>
-                <!-- /.col-lg-12 -->
             </div>
-            <!-- /row -->
+            <!-- /.row -->
+            <!-- .row -->
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-md-2 col-12"></div>
+                <div class="col-md-8 col-xs-12">
                     <div class="white-box">
-                        <div class="table-responsive">
-                            <table class="table" id="example">
-                                <thead>
-                                <tr>
-                                    <th>STT</th>
-                                    <th>Tên Công Việc</th>
-                                    <th>Dự Án</th>
-                                    <th>Người Thực Hiện</th>
-                                    <th>Ngày Bắt Đầu</th>
-                                    <th>Ngày Kết Thúc</th>
-                                    <th>Trạng Thái</th>
-                                    <th>Hành Động</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <c:forEach var="tasksModel" items="${tasksModelList}" varStatus="stt">
-                                    <tr>
-                                        <td>${stt.index + 1}</td>
-                                        <td>${tasksModel.name}</td>
-                                        <td>${tasksModel.jobsModel.name}</td>
-                                        <td>${tasksModel.usersModel.fullname}</td>
-                                        <td>${tasksModel.startDate}</td>
-                                        <td>${tasksModel.endDate}</td>
-                                        <td>${tasksModel.statusModel.name}</td>
-                                        <td>
-                                            <a href="/crm/task-update?id=${tasksModel.id}"
-                                               class="btn btn-sm btn-primary">Sửa</a>
-                                            <a class="btn btn-sm btn-danger"
-                                               onclick="deleteTask(this,${tasksModel.id})">Xóa</a>
-                                            <a href="#" class="btn btn-sm btn-info">Xem</a>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>
+                        <div class="form-horizontal form-material">
+                            <div class="form-group">
+                                <label class="col-md-12">Dự án</label>
+                                <div class="col-md-12">
+                                    <select id="input-job" class="form-control form-control-line">
+                                        <option id="${tasksModel.jobsModel.id}">${tasksModel.jobsModel.name}</option>
+                                        <c:forEach var="jobsModel" items="${jobsModelList}">
+                                            <c:if test="${jobsModel.id != tasksModel.jobsModel.id}">
+                                                <option id="${jobsModel.id}">${jobsModel.name}</option>
+                                            </c:if>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">Tên công việc</label>
+                                <div class="col-md-12">
+                                    <input id="input-name" type="text"
+                                           value="${tasksModel.name}" placeholder="Tên công việc"
+                                           class="form-control form-control-line">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">Người thực hiện</label>
+                                <div class="col-md-12">
+                                    <select id="input-user" class="form-control form-control-line">
+                                        <option id="${tasksModel.usersModel.id}">${tasksModel.usersModel.fullname}</option>
+                                        <c:forEach var="usersModel" items="${usersModelList}">
+                                            <c:if test="${usersModel.id != tasksModel.usersModel.id}">
+                                                <option id="${usersModel.id}">${usersModel.fullname}</option>
+                                            </c:if>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">Ngày bắt đầu</label>
+                                <div class="col-md-12">
+                                    <input id="input-startdate" type="text"
+                                           value="${tasksModel.startDate}" placeholder="dd/MM/yyyy"
+                                           class="form-control form-control-line">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">Ngày kết thúc</label>
+                                <div class="col-md-12">
+                                    <input id="input-enddate" type="text"
+                                           value="${tasksModel.endDate}" placeholder="dd/MM/yyyy"
+                                           class="form-control form-control-line">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">Trạng thái</label>
+                                <div class="col-md-12">
+                                    <select id="input-status" class="form-control form-control-line">
+                                        <option id="${tasksModel.statusModel.id}">${tasksModel.statusModel.name}</option>
+                                        <c:forEach var="statusModel" items="${statusModelList}">
+                                            <c:if test="${statusModel.id != tasksModel.statusModel.id}">
+                                                <option id="${statusModel.id}">${statusModel.name}</option>
+                                            </c:if>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <button class="btn btn-success" onclick="updateTask(${tasksModel.id})">Cập nhật
+                                    </button>
+                                    <a href="/crm/task" class="btn btn-primary">Quay lại</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-2 col-12"></div>
             </div>
             <!-- /.row -->
         </div>
@@ -197,30 +230,37 @@
 <script src="plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
 <!--slimscroll JavaScript -->
 <script src="js/jquery.slimscroll.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <!--Wave Effects -->
 <script src="js/waves.js"></script>
 <!-- Custom Theme JavaScript -->
 <script src="js/custom.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $('#example').DataTable();
-    });
-</script>
-<script>
-    function deleteTask(This, id) {
+    function updateTask(id) {
+        var name = document.querySelector("#input-name").value;
+        var startDate = document.querySelector("#input-startdate").value;
+        var endDate = document.querySelector("#input-enddate").value;
+        var userId = $("#input-user option:selected").attr("id");
+        var jobId = $("#input-job option:selected").attr("id");
+        var statusId = $("#input-status option:selected").attr("id");
+
         if (confirm("ARE YOU SURE")) {
             $.ajax({
-                url: "/crm/api/task-delete",
+                url: "/crm/api/task-update",
                 type: "post",
                 data: {
-                    id: id
+                    id: id,
+                    name: name,
+                    startDate: startDate,
+                    endDate: endDate,
+                    userId: userId,
+                    jobId: jobId,
+                    statusId: statusId
                 },
                 success: function (response) {
                     if (response.success) {
                         alert("SUCCESSFUL");
 
-                        This.closest("tr").remove();
+                        window.location.href = "/crm/task";
                     } else {
                         alert("UNSUCCESSFUL");
                     }

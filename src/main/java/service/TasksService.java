@@ -45,6 +45,33 @@ public class TasksService {
     }
 
     /**
+     * phương thức cập nhật task trong Database
+     *
+     * @param id        (tham số id của task cần cập nhật)
+     * @param name      (tham số name của task cần cập nhật)
+     * @param startDate (tham số startDate của task cần cập nhật)
+     * @param endDate   (tham số endDate của task cần cập nhật)
+     * @param userId    (tham số userId của task cần cập nhật)
+     * @param jobId     (tham số jobId của task cần cập nhật)
+     * @param statusId  (tham số statusId của task cần cập nhật)
+     * @return (trả về true nếu cập nhật task thành công, nếu không thì trả về false)
+     */
+    public boolean updateTask(int id, String name, String startDate, String endDate, int userId, int jobId, int statusId) {
+        //kiểm tra dữ liệu nhập hợp lệ
+        if (!dataValidate(name, startDate, endDate, userId, jobId, statusId)) {
+            return false;
+        }
+
+        //chuyển đổi định dạng chuỗi ngày dd/MM/yyyy thành yyyy-MM-dd
+        startDate = convertDate(startDate);
+        endDate = convertDate(endDate);
+
+        TasksRepository tasksRepository = new TasksRepository();
+        int result = tasksRepository.updateTask(id, name, startDate, endDate, userId, jobId, statusId);
+        return result > 0;
+    }
+
+    /**
      * phương thức xóa task dựa trên id
      *
      * @param id (tham số id của task cần xóa)
@@ -54,6 +81,17 @@ public class TasksService {
         TasksRepository tasksRepository = new TasksRepository();
         int result = tasksRepository.deleteTask(id);
         return result > 0;
+    }
+
+    /**
+     * phương thức trả về task dựa trên id
+     *
+     * @param id (tham số id của task cần tìm)
+     * @return (trả về task nếu tìm thấy, nếu không thì trả về null)
+     */
+    public TasksModel getTaskById(int id) {
+        TasksRepository tasksRepository = new TasksRepository();
+        return tasksRepository.getTaskById(id);
     }
 
     /**
