@@ -43,6 +43,6 @@ public class TaskServlet extends HttpServlet {
     }
 
     private void getAdd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/task-add.html").forward(req, resp);
+        req.getRequestDispatcher("/task-add.jsp").forward(req, resp);
     }
 }

@@ -7,21 +7,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="05eb8e39-3378-4683-b5ed-53bf275c6268" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/repository/StatusRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/repository/TasksRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/service/StatusService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/service/TasksService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/TaskServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/TaskServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/TasksModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/TasksModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repository/JobsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/JobsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repository/UsersRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/UsersRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/JobsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/JobsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/task.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/task.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/repository/UsersRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/repository/UsersRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/service/JobsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/service/JobsService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/crm_app/WEB-INF/classes/repository/UsersRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/crm_app/WEB-INF/classes/repository/UsersRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/crm_app/WEB-INF/classes/service/JobsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/crm_app/WEB-INF/classes/service/JobsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/groupwork-update.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/groupwork-update.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/groupwork.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/groupwork.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/role-table.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/role-table.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/role-update.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/role-update.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/task-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/task-add.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/task.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/task.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/user-add.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/user-add.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/user-table.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/user-table.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/user-update.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/user-update.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -89,8 +84,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/controller/TaskServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-49">
-              <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+            <state relative-caret-position="461">
+              <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -98,11 +93,24 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/task.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="172" column="44" lean-forward="true" selection-start-line="172" selection-start-column="44" selection-end-line="172" selection-end-column="44" />
+            <state relative-caret-position="85">
+              <caret line="5" column="16" lean-forward="true" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/task-add.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-527">
+              <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+              <folding>
+                <element signature="n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -133,7 +141,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/user-details.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/groupwork.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/profile.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/profile-edit.html" />
@@ -161,14 +168,11 @@
         <option value="$PROJECT_DIR$/src/main/java/api/JobApi.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/user-table.html" />
         <option value="$PROJECT_DIR$/src/main/java/TEST/MAIN.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/user-add.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/model/UsersModelHasRole.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/UsersModelDisplay.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/UsersModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/UserServlet.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/user-table.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/api/UserApi.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/user-update.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/service/UsersService.java" />
         <option value="$PROJECT_DIR$/src/main/java/service/JobsService.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/TasksModel.java" />
@@ -179,11 +183,15 @@
         <option value="$PROJECT_DIR$/src/main/java/repository/JobsRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/repository/TasksRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/TaskServlet.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/task.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/task-add.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/groupwork.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/groupwork-update.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/role-table.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/role-update.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/task.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/user-add.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/user-table.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/user-update.jsp" />
       </list>
     </option>
   </component>
@@ -521,12 +529,12 @@
       <workItem from="1669080804422" duration="1785000" />
       <workItem from="1672625984122" duration="19576000" />
       <workItem from="1672748208722" duration="1070000" />
-      <workItem from="1672796964281" duration="8061000" />
+      <workItem from="1672796964281" duration="8592000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141346000" />
+    <option name="totallyTimeSpent" value="141877000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -541,7 +549,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32733223" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32569557" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.95090014" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -648,17 +656,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
           <caret line="174" column="30" lean-forward="true" selection-start-line="174" selection-start-column="30" selection-end-line="174" selection-end-column="30" />
-          <folding>
-            <element signature="n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/task-add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="177" column="58" selection-start-line="177" selection-start-column="58" selection-end-line="177" selection-end-column="58" />
           <folding>
             <element signature="n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" />
@@ -1055,69 +1052,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/groupwork.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="15" lean-forward="true" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/groupwork-update.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/role-table.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="86" selection-start-column="86" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/role-update.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="86" selection-start-column="86" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/user-add.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/user-table.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2482">
-          <caret line="146" column="7" lean-forward="true" selection-start-line="146" selection-start-column="7" selection-end-line="146" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/user-update.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/TaskServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-49">
-          <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+        <state relative-caret-position="461">
+          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/groupwork.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/groupwork-update.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/role-table.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/role-update.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/user-add.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/user-table.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/user-update.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/task.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="172" column="44" lean-forward="true" selection-start-line="172" selection-start-column="44" selection-end-line="172" selection-end-column="44" />
+        <state relative-caret-position="85">
+          <caret line="5" column="16" lean-forward="true" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/task-add.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-527">
+          <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+          <folding>
+            <element signature="n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" />
+          </folding>
         </state>
       </provider>
     </entry>
