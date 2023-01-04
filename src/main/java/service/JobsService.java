@@ -31,17 +31,9 @@ public class JobsService {
             return false;
         }
 
-        if (startDate.equals("")) {
-            startDate = null;
-        } else {
-            startDate = convertDate(startDate);
-        }
-
-        if (endDate.equals("")) {
-            endDate = null;
-        } else {
-            endDate = convertDate(endDate);
-        }
+        //chuyển đổi định dạng chuỗi ngày dd/MM/yyyy thành yyyy-MM-dd
+        startDate = convertDate(startDate);
+        endDate = convertDate(endDate);
 
         JobsRepository jobsRepository = new JobsRepository();
         int result = jobsRepository.addJob(name, startDate, endDate);
@@ -85,17 +77,9 @@ public class JobsService {
             return false;
         }
 
-        if (startDate.equals("")) {
-            startDate = null;
-        } else {
-            startDate = convertDate(startDate);
-        }
-
-        if (endDate.equals("")) {
-            endDate = null;
-        } else {
-            endDate = convertDate(endDate);
-        }
+        //chuyển đổi định dạng chuỗi ngày dd/MM/yyyy thành yyyy-MM-dd
+        startDate = convertDate(startDate);
+        endDate = convertDate(endDate);
 
         JobsRepository jobsRepository = new JobsRepository();
         int result = jobsRepository.updateJobById(id, name, startDate, endDate);
@@ -111,26 +95,16 @@ public class JobsService {
      * @return (trả về true nếu dữ liệu hợp lệ, nếu không thì trả về false)
      */
     private boolean dataValidate(String name, String startDate, String endDate) {
-        if (name.equals("")) {
+        if (name.equals("") || startDate.equals("") || endDate.equals("")) {
             return false;
         }
 
-        if (!startDate.equals("")) {
-            if (!dateValidate(startDate)) {
-                return false;
-            }
+        if (!(dateValidate(startDate) && dateValidate(endDate))) {
+            return false;
         }
 
-        if (!endDate.equals("")) {
-            if (!dateValidate(endDate)) {
-                return false;
-            }
-        }
-
-        if (!startDate.equals("") && !endDate.equals("")) {
-            if (!dateValidate(startDate, endDate)) {
-                return false;
-            }
+        if (!dateValidate(startDate, endDate)) {
+            return false;
         }
         return true;
     }
@@ -148,9 +122,10 @@ public class JobsService {
         try {
             sdf.parse(date);
             return true;
-        } catch (ParseException ex) {
-            return false;
+        } catch (ParseException ignored) {
+
         }
+        return false;
     }
 
     /**

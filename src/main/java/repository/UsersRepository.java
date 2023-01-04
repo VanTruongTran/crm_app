@@ -84,7 +84,7 @@ public class UsersRepository {
             }
             connection.close();
         } catch (SQLException ex) {
-            System.out.println("Find error in 'getUserById', " + ex.getMessage());
+            System.out.println("Found error in 'getUserById', " + ex.getMessage());
             ex.printStackTrace();
         }
         return usersModel;
@@ -179,7 +179,7 @@ public class UsersRepository {
             result = statement.executeUpdate();
             connection.close();
         } catch (SQLException ex) {
-            System.out.println("Find error in 'deleteUserById', " + ex.getMessage());
+            System.out.println("Found error in 'deleteUserById', " + ex.getMessage());
             ex.printStackTrace();
         }
         return result;
@@ -212,7 +212,7 @@ public class UsersRepository {
             result = statement.executeUpdate();
             connection.close();
         } catch (SQLException ex) {
-            System.out.println("Find error in 'updateUser', " + ex.getMessage());
+            System.out.println("Found error in 'updateUser', " + ex.getMessage());
             ex.printStackTrace();
         }
         return result;

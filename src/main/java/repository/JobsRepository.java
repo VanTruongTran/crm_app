@@ -19,10 +19,9 @@ public class JobsRepository {
      */
     public List<JobsModel> getJobsList() {
         final String QUERY = "SELECT * FROM jobs";
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        sdf.setLenient(false);
-
         List<JobsModel> jobsModelList = new ArrayList<JobsModel>();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
         try {
             Connection connection = JDBCConnection.getMySQLConnection();
             PreparedStatement statement = connection.prepareStatement(QUERY);

@@ -5,9 +5,9 @@ public class TasksModel {
     private String name;
     private String startDate;
     private String endDate;
-    private Integer userId;
-    private Integer jobId;
-    private Integer statusId;
+    private UsersModel usersModel;
+    private JobsModel jobsModel;
+    private StatusModel statusModel;
 
     /* CONSTRUCTORS */
     public TasksModel() {
@@ -47,27 +47,27 @@ public class TasksModel {
         this.endDate = endDate;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public UsersModel getUsersModel() {
+        return usersModel;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUsersModel(UsersModel usersModel) {
+        this.usersModel = usersModel;
     }
 
-    public Integer getJobId() {
-        return jobId;
+    public JobsModel getJobsModel() {
+        return jobsModel;
     }
 
-    public void setJobId(Integer jobId) {
-        this.jobId = jobId;
+    public void setJobsModel(JobsModel jobsModel) {
+        this.jobsModel = jobsModel;
     }
 
-    public Integer getStatusId() {
-        return statusId;
+    public StatusModel getStatusModel() {
+        return statusModel;
     }
 
-    public void setStatusId(Integer statusId) {
-        this.statusId = statusId;
+    public void setStatusModel(StatusModel statusModel) {
+        this.statusModel = statusModel;
     }
 }
