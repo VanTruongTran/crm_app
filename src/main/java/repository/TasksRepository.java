@@ -103,4 +103,29 @@ public class TasksRepository {
         }
         return result;
     }
+
+    /**
+     * phương thức xóa task dựa trên id
+     *
+     * @param id (tham số id của task cần xóa)
+     * @return (trả về 1 nếu xóa thành công, nếu không thì trả về 0)
+     */
+    public int deleteTask(int id) {
+        final String QUERY = "DELETE FROM tasks t WHERE t.id = ?";
+        int result = 0;
+
+        try {
+            Connection connection = JDBCConnection.getMySQLConnection();
+            PreparedStatement statement = connection.prepareStatement(QUERY);
+
+            statement.setInt(1, id);
+            result = statement.executeUpdate();
+
+            connection.close();
+        } catch (SQLException ex) {
+            System.out.println("Found error in 'deleteTask', " + ex.getMessage());
+            ex.printStackTrace();
+        }
+        return result;
+    }
 }

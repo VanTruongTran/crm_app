@@ -45,6 +45,18 @@ public class TasksService {
     }
 
     /**
+     * phương thức xóa task dựa trên id
+     *
+     * @param id (tham số id của task cần xóa)
+     * @return (trả về true nếu xóa thành công, nếu không thì trả về false)
+     */
+    public boolean deleteTask(int id) {
+        TasksRepository tasksRepository = new TasksRepository();
+        int result = tasksRepository.deleteTask(id);
+        return result > 0;
+    }
+
+    /**
      * phương thức kiểm tra dữ liệu nhập hợp lệ
      *
      * @param name      (tham số name do người dùng nhập)

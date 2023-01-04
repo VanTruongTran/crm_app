@@ -30,6 +30,7 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <![endif]-->
 </head>
 
@@ -167,7 +168,8 @@
                                         <td>${tasksModel.statusModel.name}</td>
                                         <td>
                                             <a href="#" class="btn btn-sm btn-primary">Sửa</a>
-                                            <a href="#" class="btn btn-sm btn-danger">Xóa</a>
+                                            <a class="btn btn-sm btn-danger"
+                                               onclick="deleteTask(this,${tasksModel.id})">Xóa</a>
                                             <a href="#" class="btn btn-sm btn-info">Xem</a>
                                         </td>
                                     </tr>
@@ -203,6 +205,31 @@
     $(document).ready(function () {
         $('#example').DataTable();
     });
+</script>
+<script>
+    function deleteTask(This, id) {
+        if (confirm("ARE YOU SURE")) {
+            $.ajax({
+                url: "/crm/api/task-delete",
+                type: "post",
+                data: {
+                    id: id
+                },
+                success: function (response) {
+                    if (response.success) {
+                        alert("SUCCESSFUL");
+
+                        This.closest("tr").remove();
+                    } else {
+                        alert("UNSUCCESSFUL");
+                    }
+                },
+                error: function () {
+                    alert("ERROR");
+                }
+            });
+        }
+    }
 </script>
 </body>
 
