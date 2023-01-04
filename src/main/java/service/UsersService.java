@@ -41,10 +41,12 @@ public class UsersService {
      * @return (trả về true nếu thêm thành công, nếu không thì trả về false)
      */
     public boolean addUser(String email, String password, String fullname, String avatar, int roleId) {
+        //kiểm tra dữ liệu nhập hợp lệ
         if (!dataValidate(email, password, fullname, avatar, roleId)) {
             return false;
         }
 
+        //set null giá trị bị bỏ trống
         if (avatar.equals("")) {
             avatar = null;
         }
@@ -65,10 +67,12 @@ public class UsersService {
      * @return (trả về true nếu update thành công, nếu không thì trả về false)
      */
     public boolean updateUser(int id, String fullname, String email, String avatar, int roleId) {
+        //kiểm tra dữ liệu nhập hợp lệ
         if (!dataValidate(email, "password", fullname, avatar, roleId)) {
             return false;
         }
 
+        //set null giá trị bị bỏ trống
         if (avatar.equals("")) {
             avatar = null;
         }

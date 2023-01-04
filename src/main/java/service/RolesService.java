@@ -14,10 +14,12 @@ public class RolesService {
      * @return (nếu thêm role thành công thì trả về true, nếu không thì trả về false)
      */
     public boolean addRole(String name, String description) {
+        //kiểm tra dữ liệu nhập hợp lệ
         if (!dataValidate(name, description)) {
             return false;
         }
 
+        //set null giá trị bị bỏ trống
         if (description.equals("")) {
             description = null;
         }
@@ -69,10 +71,12 @@ public class RolesService {
      * @return (trả về 1 nếu role được update thành công, nếu không thì trả về 0)
      */
     public boolean updateRole(int id, String name, String description) {
+        //kiểm tra dữ liệu nhập hợp lệ
         if (!dataValidate(name, description)) {
             return false;
         }
 
+        //set null giá trị bị bỏ trống
         if (description.equals("")) {
             description = null;
         }

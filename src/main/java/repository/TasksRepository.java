@@ -67,4 +67,40 @@ public class TasksRepository {
         }
         return tasksModelList;
     }
+
+    /**
+     * phương thức thêm task vào Database
+     *
+     * @param name      (tham số name của task muốn thêm)
+     * @param startDate (tham số startDate của task muốn thêm)
+     * @param endDate   (tham số endDate của task muốn thêm)
+     * @param userId    (tham số userId của task muốn thêm)
+     * @param jobId     (tham số jobId của task muốn thêm)
+     * @param statusId  (tham số statusId của task muốn thêm)
+     * @return (trả về 1 nếu thêm task thành công, nếu không thì trả về 0)
+     */
+    public int addTask(String name, String startDate, String endDate, int userId, int jobId, int statusId) {
+        final String QUERY = "INSERT INTO tasks(name,start_date,end_date,user_id,job_id,status_id) VALUES (?,?,?,?,?,?)";
+        int result = 0;
+
+        try {
+            Connection connection = JDBCConnection.getMySQLConnection();
+            PreparedStatement statement = connection.prepareStatement(QUERY);
+
+            statement.setString(1, name);
+            statement.setString(2, startDate);
+            statement.setString(3, endDate);
+            statement.setInt(4, userId);
+            statement.setInt(5, jobId);
+            statement.setInt(6, statusId);
+
+            result = statement.executeUpdate();
+
+            connection.close();
+        } catch (SQLException ex) {
+            System.out.println("Found error in 'addTask', " + ex.getMessage());
+            ex.printStackTrace();
+        }
+        return result;
+    }
 }

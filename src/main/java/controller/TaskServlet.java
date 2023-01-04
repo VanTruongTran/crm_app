@@ -1,7 +1,11 @@
 package controller;
 
+import model.JobsModel;
 import model.TasksModel;
+import model.UsersModel;
+import service.JobsService;
 import service.TasksService;
+import service.UsersService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,6 +47,14 @@ public class TaskServlet extends HttpServlet {
     }
 
     private void getAdd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        JobsService jobsService = new JobsService();
+        List<JobsModel> jobsModelList = jobsService.getJobsList();
+        req.setAttribute("jobsModelList", jobsModelList);
+
+        UsersService usersService = new UsersService();
+        List<UsersModel> usersModelList = usersService.getUsersList();
+        req.setAttribute("usersModelList", usersModelList);
+
         req.getRequestDispatcher("/task-add.jsp").forward(req, resp);
     }
 }

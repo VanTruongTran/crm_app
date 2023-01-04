@@ -27,6 +27,7 @@ public class JobsService {
      * @return (trả về true nếu thêm job thành công, nếu không thì trả về false)
      */
     public boolean addJob(String name, String startDate, String endDate) {
+        //kiểm tra dữ liệu nhập hợp lệ
         if (!dataValidate(name, startDate, endDate)) {
             return false;
         }
@@ -73,6 +74,7 @@ public class JobsService {
      * @return (trả về 1 nếu cập nhật thành công, nếu không thì trả về 0)
      */
     public boolean updateJobById(int id, String name, String startDate, String endDate) {
+        //kiểm tra dữ liệu nhập hợp lệ
         if (!dataValidate(name, startDate, endDate)) {
             return false;
         }
@@ -99,7 +101,7 @@ public class JobsService {
             return false;
         }
 
-        if (!(dateValidate(startDate) && dateValidate(endDate))) {
+        if (!dateValidate(startDate) || !dateValidate(endDate)) {
             return false;
         }
 
@@ -153,7 +155,7 @@ public class JobsService {
     /**
      * phương thức chuyển đổi định dạng chuỗi ngày dd/MM/yyyy thành yyyy-MM-dd
      *
-     * @param date (chuỗi ngày cần đổi định dạng)
+     * @param date (tham số chuỗi ngày cần đổi định dạng)
      * @return (trả về chuỗi ngày sau khi đổi định dạng)
      */
     private String convertDate(String date) {
