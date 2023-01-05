@@ -1,7 +1,11 @@
 package controller;
 
 import model.JobsModel;
+import model.TasksModel;
+import model.UsersModel;
 import service.JobsService;
+import service.TasksService;
+import service.UsersService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -55,7 +59,30 @@ public class GroupworkServlet extends HttpServlet {
     }
 
     private void getDetails(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/groupwork-details.html").forward(req, resp);
+        int id = Integer.parseInt(req.getParameter("id"));
+
+        JobsService jobsService = new JobsService();
+        JobsModel jobsModel = jobsService.getJobById(id);
+        req.setAttribute("jobsModel", jobsModel);
+
+        UsersService usersService = new UsersService();
+        List<UsersModel> usersModelList = usersService.getUsersListWhereJobId(id);
+        req.setAttribute("usersModelList", usersModelList);
+
+        TasksService tasksService = new TasksService();
+        List<TasksModel> tasksModelList = tasksService.getTasksListWhereJobId(id);
+        req.setAttribute("tasksModelList", tasksModelList);
+
+        int numberOfAllTask = tasksService.countAllTask(tasksModelList);//đếm tổng số task
+        int numberOfNewTask = tasksService.countAllTaskWhereStatusId(tasksModelList, 1);//đếm tổng số task chưa bắt đầu
+        int numberOfProgressTask = tasksService.countAllTaskWhereStatusId(tasksModelList, 2);//đếm tổng số task đang thực hiện
+        int numberOfCompleledTask = tasksService.countAllTaskWhereStatusId(tasksModelList, 3);//đếm tổng số task đã hoàn thành
+        req.setAttribute("numberOfAllTask", numberOfAllTask);
+        req.setAttribute("numberOfNewTask", numberOfNewTask);
+        req.setAttribute("numberOfProgressTask", numberOfProgressTask);
+        req.setAttribute("numberOfCompleledTask", numberOfCompleledTask);
+
+        req.getRequestDispatcher("/groupwork-details.jsp").forward(req, resp);
     }
 
     private void getUpdate(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

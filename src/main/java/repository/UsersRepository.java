@@ -162,6 +162,48 @@ public class UsersRepository {
     }
 
     /**
+     * phương thức lấy danh sách user của project từ Database
+     *
+     * @param jobId (tham số id của project cần lấy danh sách user)
+     * @return (trả về danh sách những user thực hiện project)
+     */
+    public List<UsersModel> getUsersListWhereJobId(int jobId) {
+        final String QUERY = "SELECT DISTINCT u.* FROM users u\n" +
+                "JOIN tasks t ON u.id = t.user_id\n" +
+                "JOIN jobs j ON j.id = t.job_id\n" +
+                "WHERE j.id = ?";
+        List<UsersModel> usersModelList = new ArrayList<UsersModel>();
+
+        try {
+            Connection connection = JDBCConnection.getMySQLConnection();
+            PreparedStatement statement = connection.prepareStatement(QUERY);
+
+            statement.setInt(1, jobId);
+
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                UsersModel usersModel = new UsersModel();
+                usersModel.setId(resultSet.getInt("id"));
+                usersModel.setEmail(resultSet.getString("email"));
+                usersModel.setPassword(null);
+                usersModel.setFullname(resultSet.getString("fullname"));
+                usersModel.setAvatar(resultSet.getString("avatar"));
+
+                RolesService rolesService = new RolesService();
+                RolesModel rolesModel = rolesService.getRoleById(resultSet.getInt("role_id"));
+                usersModel.setRolesModel(rolesModel);
+
+                usersModelList.add(usersModel);
+            }
+            connection.close();
+        } catch (SQLException ex) {
+            System.out.println("Found error in 'getUsersListWhereJobId', " + ex.getMessage());
+            ex.printStackTrace();
+        }
+        return usersModelList;
+    }
+
+    /**
      * phương thức xóa user khỏi Database
      *
      * @param id (tham số id của user cần xóa khỏi Database)

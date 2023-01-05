@@ -164,7 +164,8 @@
                                             <a href="/crm/groupwork-update?id=${jobsModel.id}"
                                                class="btn btn-sm btn-primary">Sửa</a>
                                             <a class="btn btn-sm btn-danger" onclick="deleteJob(this,${jobsModel.id})">Xóa</a>
-                                            <a href="/crm/groupwork-details" class="btn btn-sm btn-info">Xem</a>
+                                            <a href="/crm/groupwork-details?id=${jobsModel.id}"
+                                               class="btn btn-sm btn-info">Xem</a>
                                         </td>
                                     </tr>
                                 </c:forEach>

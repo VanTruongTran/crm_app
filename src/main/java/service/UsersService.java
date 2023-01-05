@@ -93,6 +93,17 @@ public class UsersService {
     }
 
     /**
+     * phương thức lấy danh sách user của project từ Database
+     *
+     * @param jobId (tham số id của project cần lấy danh sách user)
+     * @return (trả về danh sách những user thực hiện project)
+     */
+    public List<UsersModel> getUsersListWhereJobId(int jobId) {
+        UsersRepository usersRepository = new UsersRepository();
+        return usersRepository.getUsersListWhereJobId(jobId);
+    }
+
+    /**
      * phương thức xóa user khỏi Database
      *
      * @param id (tham số id của user cần xóa khỏi Database)
