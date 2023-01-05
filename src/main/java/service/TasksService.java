@@ -19,6 +19,17 @@ public class TasksService {
     }
 
     /**
+     * phương thức lấy danh sách task của user từ Database
+     *
+     * @param userId (tham số id của user cần lấy danh sách task)
+     * @return (trả về danh sách task của user)
+     */
+    public List<TasksModel> getTasksListWhereUserId(int userId) {
+        TasksRepository tasksRepository = new TasksRepository();
+        return tasksRepository.getTasksListWhereUserId(userId);
+    }
+
+    /**
      * phương thức thêm task vào Database
      *
      * @param name      (tham số name của task muốn thêm)

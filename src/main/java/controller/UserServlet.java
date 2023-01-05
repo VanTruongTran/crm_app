@@ -1,8 +1,10 @@
 package controller;
 
 import model.RolesModel;
+import model.TasksModel;
 import model.UsersModel;
 import service.RolesService;
+import service.TasksService;
 import service.UsersService;
 
 import javax.servlet.ServletException;
@@ -61,7 +63,26 @@ public class UserServlet extends HttpServlet {
     }
 
     private void getDetails(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/user-details.html").forward(req, resp);
+        int userId = Integer.parseInt(req.getParameter("id"));
+
+        UsersService usersService = new UsersService();
+        UsersModel usersModel = usersService.getUserById(userId);
+        req.setAttribute("usersModel", usersModel);
+
+        TasksService tasksService = new TasksService();
+        List<TasksModel> tasksModelList = tasksService.getTasksListWhereUserId(userId);
+        req.setAttribute("tasksModelList", tasksModelList);
+
+        int numberOfAllTask = tasksService.countAllTask(tasksModelList);//đếm tổng số task
+        int numberOfNewTask = tasksService.countAllTaskWhereStatusId(tasksModelList, 1);//đếm tổng số task chưa bắt đầu
+        int numberOfProgressTask = tasksService.countAllTaskWhereStatusId(tasksModelList, 2);//đếm tổng số task đang thực hiện
+        int numberOfCompleledTask = tasksService.countAllTaskWhereStatusId(tasksModelList, 3);//đếm tổng số task đã hoàn thành
+        req.setAttribute("numberOfAllTask", numberOfAllTask);
+        req.setAttribute("numberOfNewTask", numberOfNewTask);
+        req.setAttribute("numberOfProgressTask", numberOfProgressTask);
+        req.setAttribute("numberOfCompleledTask", numberOfCompleledTask);
+
+        req.getRequestDispatcher("/user-details.jsp").forward(req, resp);
     }
 
     private void getUpdate(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

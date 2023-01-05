@@ -165,7 +165,8 @@
                                                class="btn btn-sm btn-primary">Sửa</a>
                                             <a class="btn btn-sm btn-danger"
                                                onclick="deleteUser(this,${usersModel.id})">Xóa</a>
-                                            <a href="/crm/user-details" class="btn btn-sm btn-info">Xem</a>
+                                            <a href="/crm/user-details?id=${usersModel.id}"
+                                               class="btn btn-sm btn-info">Xem</a>
                                         </td>
                                     </tr>
                                 </c:forEach>
