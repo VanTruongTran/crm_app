@@ -95,6 +95,63 @@ public class TasksService {
     }
 
     /**
+     * phương thức đếm tổng số task trong Database
+     *
+     * @return (trả về tổng số task trong Database)
+     */
+    public int countAllTask() {
+        TasksRepository tasksRepository = new TasksRepository();
+        List<TasksModel> tasksModelList = tasksRepository.getTasksList();
+
+        return tasksModelList.size();
+    }
+
+    /**
+     * phương thức đếm tổng số task trong danh sách
+     *
+     * @param tasksModelList (tham số danh sách chứa task)
+     * @return (trả về tổng số task trong danh sách)
+     */
+    public int countAllTask(List<TasksModel> tasksModelList) {
+        return tasksModelList.size();
+    }
+
+    /**
+     * phương thức đếm tổng số task dựa trên mã trạng thái trong Database
+     *
+     * @return (trả về tổng số task dựa trên mã trạng thái trong Database)
+     */
+    public int countAllTaskWhereStatusId(int statusId) {
+        TasksRepository tasksRepository = new TasksRepository();
+        List<TasksModel> tasksModelList = tasksRepository.getTasksList();
+        int count = 0;
+
+        for (TasksModel task : tasksModelList) {
+            if (task.getStatusModel().getId() == statusId) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * phương thức đếm tổng số task dựa trên mã trạng thái trong danh sách
+     *
+     * @param tasksModelList (tham số danh sách chứa task)
+     * @return (trả về tổng số task dựa trên mã trạng thái trong danh sách)
+     */
+    public int countAllTaskWhereStatusId(List<TasksModel> tasksModelList, int statusId) {
+        int count = 0;
+
+        for (TasksModel task : tasksModelList) {
+            if (task.getStatusModel().getId() == statusId) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
      * phương thức kiểm tra dữ liệu nhập hợp lệ
      *
      * @param name      (tham số name do người dùng nhập)

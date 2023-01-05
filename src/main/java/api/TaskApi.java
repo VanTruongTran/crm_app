@@ -48,7 +48,7 @@ public class TaskApi extends HttpServlet {
         String endDate = req.getParameter("endDate");
         int userId = Integer.parseInt(req.getParameter("userId"));
         int jobId = Integer.parseInt(req.getParameter("jobId"));
-        int statusId = 1;
+        int statusId = 1;//task chưa thực hiện
 
         TasksService tasksService = new TasksService();
         boolean success = tasksService.addTask(name, startDate, endDate, userId, jobId, statusId);
