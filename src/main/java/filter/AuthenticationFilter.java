@@ -21,13 +21,13 @@ public class AuthenticationFilter implements Filter {
         if (objUsersModel != null) {//đã đăng nhập
             if (servletPath.equals("/login")) {//gửi request đến trang login
                 resp.sendRedirect(req.getContextPath() + "/dashboard");
-            } else {//không gửi request đến trang login
+            } else {
                 filterChain.doFilter(servletRequest, servletResponse);
             }
         } else {//chưa đăng nhập
             if (servletPath.equals("/login")) {//gửi request đến trang login
                 filterChain.doFilter(servletRequest, servletResponse);
-            } else {//không gửi request đến trang login
+            } else {
                 resp.sendRedirect(req.getContextPath() + "/login");
             }
         }

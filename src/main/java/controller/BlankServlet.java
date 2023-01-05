@@ -11,7 +11,7 @@ import java.io.IOException;
 public class BlankServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/blank.html").forward(req, resp);
+        req.getRequestDispatcher("/blank.jsp").forward(req, resp);
     }
 
     @Override

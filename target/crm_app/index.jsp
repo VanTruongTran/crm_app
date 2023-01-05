@@ -74,7 +74,7 @@
                     <div class="dropdown">
                         <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#">
                             <img src="plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"/>
-                            <b class="hidden-xs">Cybersoft</b>
+                            <b class="hidden-xs">${sessionScope.usersModel.fullname}</b>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="/crm/profile">Thông tin cá nhân</a></li>

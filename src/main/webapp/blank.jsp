@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page isELIgnored="false" %>
+
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -73,7 +77,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="dropdown">
                             <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#">
                                 <img src="plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle" />
-                                <b class="hidden-xs">Cybersoft</b>
+                                <b class="hidden-xs">${sessionScope.usersModel.fullname}</b>
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="/crm/profile">Thông tin cá nhân</a></li>

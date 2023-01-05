@@ -55,7 +55,7 @@ public class GroupworkServlet extends HttpServlet {
     }
 
     private void getAdd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/groupwork-add.html").forward(req, resp);
+        req.getRequestDispatcher("/groupwork-add.jsp").forward(req, resp);
     }
 
     private void getDetails(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

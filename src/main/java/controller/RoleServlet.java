@@ -47,7 +47,7 @@ public class RoleServlet extends HttpServlet {
     }
 
     private void getAdd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/role-add.html").forward(req, resp);
+        req.getRequestDispatcher("/role-add.jsp").forward(req, resp);
     }
 
     private void getUpdate(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
             //tạo thuộc tính lưu thông tin user trong session
             HttpSession session = req.getSession();
             session.setAttribute("usersModel", usersModel);
-//            session.setMaxInactiveInterval(2 * 60);
+            session.setMaxInactiveInterval(600);//thiết lập thời gian đăng nhập
 
             resp.sendRedirect(req.getContextPath() + "/dashboard");
         } else {//nếu không tìm thấy user

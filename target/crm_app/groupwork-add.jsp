@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page isELIgnored="false" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,7 +70,7 @@
                     <div class="dropdown">
                         <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#">
                             <img src="plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"/>
-                            <b class="hidden-xs">Cybersoft</b>
+                            <b class="hidden-xs">${sessionScope.usersModel.fullname}</b>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="/crm/profile">Thông tin cá nhân</a></li>
@@ -125,7 +129,7 @@
         <div class="container-fluid">
             <div class="row bg-title">
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <h4 class="page-title">Thêm mới quyền</h4>
+                    <h4 class="page-title">Thêm mới dự án</h4>
                 </div>
             </div>
             <!-- /.row -->
@@ -136,23 +140,27 @@
                     <div class="white-box">
                         <div class="form-horizontal form-material">
                             <div class="form-group">
-                                <label class="col-md-12">Tên quyền</label>
+                                <label class="col-md-12">Tên dự án</label>
                                 <div class="col-md-12">
-                                    <input type="text" name="name" id="input-name" placeholder="Tên quyền"
-                                           class="form-control form-control-line"/>
-                                </div>
+                                    <input id="input-name" type="text" placeholder="Tên công việc"
+                                           class="form-control form-control-line"></div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-12">Mô tả</label>
+                                <label class="col-md-12">Ngày bắt đầu</label>
                                 <div class="col-md-12">
-                                    <input type="text" name="description" id="input-description" placeholder="Mô tả"
-                                           class="form-control form-control-line"/>
-                                </div>
+                                    <input id="input-start-date" type="text" placeholder="dd/MM/yyyy"
+                                           class="form-control form-control-line"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">Ngày kết thúc</label>
+                                <div class="col-md-12">
+                                    <input id="input-end-date" type="text" placeholder="dd/MM/yyyy"
+                                           class="form-control form-control-line"></div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <button class="btn btn-success" onclick="addRole()">Thêm</button>
-                                    <a href="/crm/role" class="btn btn-primary">Quay lại</a>
+                                    <button class="btn btn-success" onclick="addJob()">Thêm</button>
+                                    <a href="/crm/groupwork" class="btn btn-primary">Quay lại</a>
                                 </div>
                             </div>
                         </div>
@@ -181,23 +189,26 @@
 <!-- Custom Theme JavaScript -->
 <script src="js/custom.min.js"></script>
 <script>
-    function addRole() {
+    function addJob() {
         var name = document.querySelector("#input-name").value;
-        var description = document.querySelector("#input-description").value;
+        var startDate = document.querySelector("#input-start-date").value;
+        var endDate = document.querySelector("#input-end-date").value;
 
         $.ajax({
-            url: "/crm/api/role-add",
+            url: "/crm/api/groupwork-add",
             type: "post",
             data: {
                 name: name,
-                description: description
+                startDate: startDate,
+                endDate: endDate
             },
             success: function (response) {
                 if (response.success) {
                     alert("SUCCESSFUL");
 
                     document.querySelector("#input-name").value = "";
-                    document.querySelector("#input-description").value = "";
+                    document.querySelector("#input-start-date").value = "";
+                    document.querySelector("#input-end-date").value = "";
                 } else {
                     alert("UNSUCCESSFUL");
                 }

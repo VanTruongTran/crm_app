@@ -31,10 +31,10 @@ public class ProfileServlet extends HttpServlet {
     }
 
     private void getList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/profile.html").forward(req, resp);
+        req.getRequestDispatcher("/profile.jsp").forward(req, resp);
     }
 
     private void getEdit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/profile-edit.html").forward(req, resp);
+        req.getRequestDispatcher("/profile-edit.jsp").forward(req, resp);
     }
 }
