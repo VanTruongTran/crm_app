@@ -94,6 +94,19 @@ public class TasksService {
     }
 
     /**
+     * phương thức cập nhật trạng thái task trong Database
+     *
+     * @param id       (tham số id của task cần cập nhật trạng thái)
+     * @param statusId (tham số statusId cần cập nhật của task)
+     * @return (trả về true nếu cập nhật trạng thái task thành công, nếu không thì trả về false)
+     */
+    public boolean updateTaskStatus(int id, int statusId) {
+        TasksRepository tasksRepository = new TasksRepository();
+        int result = tasksRepository.updateTaskStatus(id, statusId);
+        return result > 0;
+    }
+
+    /**
      * phương thức xóa task dựa trên id
      *
      * @param id (tham số id của task cần xóa)

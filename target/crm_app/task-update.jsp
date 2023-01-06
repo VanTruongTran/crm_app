@@ -73,7 +73,7 @@
                             <b class="hidden-xs">${sessionScope.usersModel.fullname}</b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="/crm/profile">Thông tin cá nhân</a></li>
+                            <li><a href="/crm/profile?id=${sessionScope.usersModel.id}">Thông tin cá nhân</a></li>
                             <li><a href="#">XXXXXXXX Thống kê công việc</a></li>
                             <li class="divider"></li>
                             <li><a href="/crm/logout">Đăng xuất</a></li>
@@ -143,11 +143,15 @@
                                 <label class="col-md-12">Dự án</label>
                                 <div class="col-md-12">
                                     <select id="input-job" class="form-control form-control-line">
-                                        <option id="${tasksModel.jobsModel.id}">${tasksModel.jobsModel.name}</option>
                                         <c:forEach var="jobsModel" items="${jobsModelList}">
-                                            <c:if test="${jobsModel.id != tasksModel.jobsModel.id}">
-                                                <option id="${jobsModel.id}">${jobsModel.name}</option>
-                                            </c:if>
+                                            <c:choose>
+                                                <c:when test="${jobsModel.id == tasksModel.jobsModel.id}">
+                                                    <option selected id="${jobsModel.id}">${jobsModel.name}</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option id="${jobsModel.id}">${jobsModel.name}</option>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </c:forEach>
                                     </select>
                                 </div>
@@ -164,11 +168,16 @@
                                 <label class="col-md-12">Người thực hiện</label>
                                 <div class="col-md-12">
                                     <select id="input-user" class="form-control form-control-line">
-                                        <option id="${tasksModel.usersModel.id}">${tasksModel.usersModel.fullname}</option>
                                         <c:forEach var="usersModel" items="${usersModelList}">
-                                            <c:if test="${usersModel.id != tasksModel.usersModel.id}">
-                                                <option id="${usersModel.id}">${usersModel.fullname}</option>
-                                            </c:if>
+                                            <c:choose>
+                                                <c:when test="${usersModel.id == tasksModel.usersModel.id}">
+                                                    <option selected
+                                                            id="${usersModel.id}">${usersModel.fullname}</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option id="${usersModel.id}">${usersModel.fullname}</option>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </c:forEach>
                                     </select>
                                 </div>
@@ -193,11 +202,15 @@
                                 <label class="col-md-12">Trạng thái</label>
                                 <div class="col-md-12">
                                     <select id="input-status" class="form-control form-control-line">
-                                        <option id="${tasksModel.statusModel.id}">${tasksModel.statusModel.name}</option>
                                         <c:forEach var="statusModel" items="${statusModelList}">
-                                            <c:if test="${statusModel.id != tasksModel.statusModel.id}">
-                                                <option id="${statusModel.id}">${statusModel.name}</option>
-                                            </c:if>
+                                            <c:choose>
+                                                <c:when test="${statusModel.id == tasksModel.statusModel.id}">
+                                                    <option selected id="${statusModel.id}">${statusModel.name}</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option id="${statusModel.id}">${statusModel.name}</option>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </c:forEach>
                                     </select>
                                 </div>

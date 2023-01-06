@@ -73,7 +73,7 @@
                             <b class="hidden-xs">${sessionScope.usersModel.fullname}</b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="/crm/profile">Thông tin cá nhân</a></li>
+                            <li><a href="/crm/profile?id=${sessionScope.usersModel.id}">Thông tin cá nhân</a></li>
                             <li><a href="#">XXXXXXXX Thống kê công việc</a></li>
                             <li class="divider"></li>
                             <li><a href="/crm/logout">Đăng xuất</a></li>
@@ -165,11 +165,15 @@
                                 <label class="col-sm-12">Select Role</label>
                                 <div class="col-sm-12">
                                     <select id="input-role" class="form-control form-control-line">
-                                        <option id="${usersModel.rolesModel.id}">${usersModel.rolesModel.name}</option>
                                         <c:forEach var="rolesModel" items="${rolesModelList}">
-                                            <c:if test="${usersModel.rolesModel.id != rolesModel.id}">
-                                                <option id="${rolesModel.id}">${rolesModel.name}</option>
-                                            </c:if>
+                                            <c:choose>
+                                                <c:when test="${rolesModel.id == usersModel.rolesModel.id}">
+                                                    <option selected id="${rolesModel.id}">${rolesModel.name}</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option id="${rolesModel.id}">${rolesModel.name}</option>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </c:forEach>
                                     </select>
                                 </div>

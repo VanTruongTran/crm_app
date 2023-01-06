@@ -323,4 +323,31 @@ public class TasksRepository {
         }
         return result;
     }
+
+    /**
+     * phương thức cập nhật trạng thái task trong Database
+     *
+     * @param id       (tham số id của task cần cập nhật trạng thái)
+     * @param statusId (tham số statusId cần cập nhật của task)
+     * @return (trả về 1 nếu cập nhật trạng thái task thành công, nếu không thì trả về 0)
+     */
+    public int updateTaskStatus(int id, int statusId) {
+        final String QUERY = "UPDATE tasks t SET t.status_id = ? WHERE t.id = ?";
+        int result = 0;
+
+        try {
+            Connection connection = JDBCConnection.getMySQLConnection();
+            PreparedStatement statement = connection.prepareStatement(QUERY);
+
+            statement.setInt(1, statusId);
+            statement.setInt(2, id);
+
+            result = statement.executeUpdate();
+            connection.close();
+        } catch (SQLException ex) {
+            System.out.println("Found error in 'updateTaskStatus', " + ex.getMessage());
+            ex.printStackTrace();
+        }
+        return result;
+    }
 }

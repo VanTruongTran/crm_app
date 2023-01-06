@@ -12,9 +12,8 @@ import java.io.IOException;
 public class LogoutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //xóa thuộc tính lưu thông tin user trong session
         HttpSession session = req.getSession();
-        session.invalidate();
+        session.invalidate();//xóa thuộc tính lưu thông tin user trong session
 
         resp.sendRedirect(req.getContextPath() + "/login");
     }

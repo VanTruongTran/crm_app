@@ -73,7 +73,7 @@
                             <b class="hidden-xs">${sessionScope.usersModel.fullname}</b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="/crm/profile">Thông tin cá nhân</a></li>
+                            <li><a href="/crm/profile?id=${sessionScope.usersModel.id}">Thông tin cá nhân</a></li>
                             <li><a href="#">XXXXXXXX Thống kê công việc</a></li>
                             <li class="divider"></li>
                             <li><a href="/crm/logout">Đăng xuất</a></li>

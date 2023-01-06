@@ -73,7 +73,7 @@
                             <b class="hidden-xs">${sessionScope.usersModel.fullname}</b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="/crm/profile">Thông tin cá nhân</a></li>
+                            <li><a href="/crm/profile?id=${sessionScope.usersModel.id}">Thông tin cá nhân</a></li>
                             <li><a href="#">XXXXXXXX Thống kê công việc</a></li>
                             <li class="divider"></li>
                             <li><a href="/crm/logout">Đăng xuất</a></li>
@@ -142,7 +142,7 @@
                             <div class="form-group">
                                 <label class="col-md-12">Tên dự án</label>
                                 <div class="col-md-12">
-                                    <input id="input-name" type="text" placeholder="Tên công việc"
+                                    <input id="input-name" type="text" placeholder="Tên dự án"
                                            class="form-control form-control-line"></div>
                             </div>
                             <div class="form-group">
