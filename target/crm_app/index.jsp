@@ -3,29 +3,34 @@
 <%@ page isELIgnored="false" %>
 
 <!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
-    <title>Pixel Admin</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
+    <title>CRM</title>
     <!-- Bootstrap Core CSS -->
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Menu CSS -->
     <link href="plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
-    <!-- toast CSS -->
-    <link href="plugins/bower_components/toast-master/css/jquery.toast.css" rel="stylesheet">
-    <!-- morris CSS -->
-    <link href="plugins/bower_components/morrisjs/morris.css" rel="stylesheet">
-    <!-- animation CSS -->
+    <!-- Animation CSS -->
     <link href="css/animate.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
-    <!-- color CSS -->
+    <!-- color CSS you can use different color css from css/colors folder -->
+    <!-- We have chosen the skin-blue (blue.css) for this starter
+          page. However, you can choose any other skin from folder css / colors .
+-->
     <link href="css/colors/blue-dark.css" id="theme" rel="stylesheet">
     <link rel="stylesheet" href="./css/custom.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -73,12 +78,14 @@
                 <li>
                     <div class="dropdown">
                         <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#">
-                            <img src="plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"/>
-                            <b class="hidden-xs">${sessionScope.usersModel.fullname}</b>
+                            <img src="${sessionScope.usersModel.avatar}"
+                                 onerror="this.src='plugins/images/users-default/users-default.jpg'"
+                                 alt="user-img" width="36" class="img-circle"/>
+                            <b class="hidden-xs">${sessionScope.usersModel.fullname}
+                                | ${sessionScope.usersModel.rolesModel.name}</b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="/crm/profile?id=${sessionScope.usersModel.id}">Thông tin cá nhân</a></li>
-                            <li><a href="#">XXXXXXXX Thống kê công việc</a></li>
+                            <li><a href="/crm/profile?id=${sessionScope.usersModel.id}">Thống kê công việc</a></li>
                             <li class="divider"></li>
                             <li><a href="/crm/logout">Đăng xuất</a></li>
                         </ul>
@@ -96,7 +103,7 @@
             <ul class="nav" id="side-menu">
                 <li style="padding: 10px 0 0;">
                     <a href="/crm/dashboard" class="waves-effect"><i class="fa fa-clock-o fa-fw"
-                                                                     aria-hidden="true"></i><span class="hide-menu">Dashboard</span></a>
+                                                                     aria-hidden="true"></i><span class="hide-menu">Tổng quan</span></a>
                 </li>
                 <li>
                     <a href="/crm/user" class="waves-effect"><i class="fa fa-user fa-fw"
@@ -116,14 +123,6 @@
                                                                 aria-hidden="true"></i><span
                             class="hide-menu">Công việc</span></a>
                 </li>
-                <li>
-                    <a href="/crm/blank" class="waves-effect"><i class="fa fa-columns fa-fw"
-                                                                 aria-hidden="true"></i><span class="hide-menu">Blank Page</span></a>
-                </li>
-                <li>
-                    <a href="/crm/alert" class="waves-effect"><i class="fa fa-info-circle fa-fw"
-                                                                 aria-hidden="true"></i><span class="hide-menu">Error 404</span></a>
-                </li>
             </ul>
         </div>
     </div>
@@ -133,106 +132,159 @@
         <div class="container-fluid">
             <div class="row bg-title">
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <h4 class="page-title">Dashboard</h4>
+                    <h4 class="page-title">Tổng quan</h4>
                 </div>
+                <!-- /.col-lg-12 -->
             </div>
-            <!-- /.col-lg-12 -->
-        </div>
-        <!-- row -->
-        <div class="row">
-            <!--col -->
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="white-box">
-                    <div class="col-in row">
-                        <div class="col-md-6 col-sm-6 col-xs-6"><i data-icon="E"
-                                                                   class="linea-icon linea-basic"></i>
-                            <h5 class="text-muted vb">CHƯA BẮT ĐẦU</h5>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <h3 class="counter text-right m-t-15 text-danger">${numberOfNewTask}</h3>
-                        </div>
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40"
-                                     aria-valuemin="0" aria-valuemax="100"
-                                     style="width: ${(numberOfNewTask/numberOfAllTask)*100}%"> <span
-                                        class="sr-only">40% Complete (success)</span></div>
+            <!-- BEGIN THỐNG KÊ -->
+            <div class="row">
+                <!--col -->
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="white-box">
+                        <div class="col-in row">
+                            <div class="col-md-6 col-sm-6 col-xs-6"><i data-icon="E"
+                                                                       class="linea-icon linea-basic"></i>
+                                <h5 class="text-muted vb">CHƯA BẮT ĐẦU</h5>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <h3 class="counter text-right m-t-15 text-danger">${numberOfNewTask}</h3>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar"
+                                         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+                                         style="width: ${(numberOfNewTask/numberOfAllTask)*100}%">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- /.col -->
-            <!--col -->
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="white-box">
-                    <div class="col-in row">
-                        <div class="col-md-6 col-sm-6 col-xs-6"><i class="linea-icon linea-basic"
-                                                                   data-icon="&#xe01b;"></i>
-                            <h5 class="text-muted vb">ĐANG THỰC HIỆN</h5>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <h3 class="counter text-right m-t-15 text-megna">${numberOfProgressTask}</h3>
-                        </div>
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-megna" role="progressbar" aria-valuenow="40"
-                                     aria-valuemin="0" aria-valuemax="100"
-                                     style="width: ${(numberOfProgressTask/numberOfAllTask)*100}%"> <span
-                                        class="sr-only">40% Complete (success)</span></div>
+                <!-- /.col -->
+                <!--col -->
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="white-box">
+                        <div class="col-in row">
+                            <div class="col-md-6 col-sm-6 col-xs-6"><i class="linea-icon linea-basic"
+                                                                       data-icon="&#xe01b;"></i>
+                                <h5 class="text-muted vb">ĐANG THỰC HIỆN</h5>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <h3 class="counter text-right m-t-15 text-megna">${numberOfProgressTask}</h3>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-megna" role="progressbar"
+                                         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+                                         style="width: ${(numberOfProgressTask/numberOfAllTask)*100}%">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- /.col -->
-            <!--col -->
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="white-box">
-                    <div class="col-in row">
-                        <div class="col-md-6 col-sm-6 col-xs-6"><i class="linea-icon linea-basic"
-                                                                   data-icon="&#xe00b;"></i>
-                            <h5 class="text-muted vb">ĐÃ HOÀN THÀNH</h5>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <h3 class="counter text-right m-t-15 text-primary">${numberOfCompleledTask}</h3>
-                        </div>
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="40"
-                                     aria-valuemin="0" aria-valuemax="100"
-                                     style="width: ${(numberOfCompleledTask/numberOfAllTask)*100}%"> <span
-                                        class="sr-only">40% Complete (success)</span></div>
+                <!-- /.col -->
+                <!--col -->
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="white-box">
+                        <div class="col-in row">
+                            <div class="col-md-6 col-sm-6 col-xs-6"><i class="linea-icon linea-basic"
+                                                                       data-icon="&#xe00b;"></i>
+                                <h5 class="text-muted vb">HOÀN THÀNH</h5>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <h3 class="counter text-right m-t-15 text-primary">${numberOfCompleledTask}</h3>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-primary" role="progressbar"
+                                         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+                                         style="width: ${(numberOfCompleledTask/numberOfAllTask)*100}%">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- /.col -->
             </div>
-            <!-- /.col -->
-        </div>
-        <!-- /.row -->
-        <!--row -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="white-box">
-                    <h3 class="box-title">Sales Difference</h3>
-                    <ul class="list-inline text-right">
-                        <li>
-                            <h5><i class="fa fa-circle m-r-5" style="color: #dadada;"></i>Site A View</h5>
-                        </li>
-                        <li>
-                            <h5><i class="fa fa-circle m-r-5" style="color: #aec9cb;"></i>Site B View</h5>
-                        </li>
-                    </ul>
-                    <div id="morris-area-chart2" style="height: 370px;"></div>
+            <!-- END THỐNG KÊ -->
+
+            <!-- BEGIN DANH SÁCH CÔNG VIỆC -->
+            <c:forEach var="jobsModel" items="${jobsModelList}">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <a href="/crm/groupwork-details?id=${jobsModel.id}" class="group-title">
+                            <img src="plugins/images/jobs-default/jobs-default.jpg"
+                                 width="30" class="img-circle"/>
+                            <span>${jobsModel.name}</span>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="white-box">
+                            <h3 class="box-title">Chưa thực hiện</h3>
+                            <div class="message-center">
+                                <c:forEach var="tasksModel" items="${tasksModelList}">
+                                    <c:if test="${tasksModel.jobsModel.id == jobsModel.id && tasksModel.statusModel.id == 1}">
+                                        <a>
+                                            <div class="mail-contnet">
+                                                <h5>${tasksModel.name}</h5>
+                                                <span class="mail-desc"></span>
+                                                <span class="time">Bắt đầu: ${tasksModel.startDate}</span>
+                                                <span class="time">Kết thúc: ${tasksModel.endDate}</span>
+                                            </div>
+                                        </a>
+                                    </c:if>
+                                </c:forEach>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="white-box">
+                            <h3 class="box-title">Đang thực hiện</h3>
+                            <div class="message-center">
+                                <c:forEach var="tasksModel" items="${tasksModelList}">
+                                    <c:if test="${tasksModel.jobsModel.id == jobsModel.id && tasksModel.statusModel.id == 2}">
+                                        <a>
+                                            <div class="mail-contnet">
+                                                <h5>${tasksModel.name}</h5>
+                                                <span class="mail-desc"></span>
+                                                <span class="time">Bắt đầu: ${tasksModel.startDate}</span>
+                                                <span class="time">Kết thúc: ${tasksModel.endDate}</span>
+                                            </div>
+                                        </a>
+                                    </c:if>
+                                </c:forEach>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="white-box">
+                            <h3 class="box-title">Đã hoàn thành</h3>
+                            <div class="message-center">
+                                <c:forEach var="tasksModel" items="${tasksModelList}">
+                                    <c:if test="${tasksModel.jobsModel.id == jobsModel.id && tasksModel.statusModel.id == 3}">
+                                        <a>
+                                            <div class="mail-contnet">
+                                                <h5>${tasksModel.name}</h5>
+                                                <span class="mail-desc"></span>
+                                                <span class="time">Bắt đầu: ${tasksModel.startDate}</span>
+                                                <span class="time">Kết thúc: ${tasksModel.endDate}</span>
+                                            </div>
+                                        </a>
+                                    </c:if>
+                                </c:forEach>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </c:forEach>
+            <!-- END DANH SÁCH CÔNG VIỆC -->
         </div>
+        <!-- /.container-fluid -->
+        <footer class="footer text-center"> 2018 &copy; myclass.com</footer>
     </div>
-    <!-- /.container-fluid -->
-    <footer class="footer text-center"> 2018 &copy; myclass.com</footer>
-</div>
-<!-- /#page-wrapper -->
+    <!-- /#page-wrapper -->
 </div>
 <!-- /#wrapper -->
 <!-- jQuery -->
@@ -245,16 +297,8 @@
 <script src="js/jquery.slimscroll.js"></script>
 <!--Wave Effects -->
 <script src="js/waves.js"></script>
-<!--Counter js -->
-<script src="plugins/bower_components/waypoints/lib/jquery.waypoints.js"></script>
-<script src="plugins/bower_components/counterup/jquery.counterup.min.js"></script>
-<!--Morris JavaScript -->
-<script src="plugins/bower_components/raphael/raphael-min.js"></script>
-<script src="plugins/bower_components/morrisjs/morris.js"></script>
 <!-- Custom Theme JavaScript -->
 <script src="js/custom.min.js"></script>
-<script src="js/dashboard1.js"></script>
-<script src="plugins/bower_components/toast-master/js/jquery.toast.js"></script>
 </body>
 
 </html>

@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
-    <title>Pixel Admin</title>
+    <title>CRM</title>
     <!-- Bootstrap Core CSS -->
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Menu CSS -->
@@ -69,12 +69,14 @@
                 <li>
                     <div class="dropdown">
                         <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#">
-                            <img src="plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"/>
-                            <b class="hidden-xs">${sessionScope.usersModel.fullname}</b>
+                            <img src="${sessionScope.usersModel.avatar}"
+                                 onerror="this.src='plugins/images/users-default/users-default.jpg'"
+                                 alt="user-img" width="36" class="img-circle"/>
+                            <b class="hidden-xs">${sessionScope.usersModel.fullname}
+                                | ${sessionScope.usersModel.rolesModel.name}</b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="/crm/profile?id=${sessionScope.usersModel.id}">Thông tin cá nhân</a></li>
-                            <li><a href="#">XXXXXXXX Thống kê công việc</a></li>
+                            <li><a href="/crm/profile?id=${sessionScope.usersModel.id}">Thống kê công việc</a></li>
                             <li class="divider"></li>
                             <li><a href="/crm/logout">Đăng xuất</a></li>
                         </ul>
@@ -92,7 +94,7 @@
             <ul class="nav" id="side-menu">
                 <li style="padding: 10px 0 0;">
                     <a href="/crm/dashboard" class="waves-effect"><i class="fa fa-clock-o fa-fw"
-                                                                     aria-hidden="true"></i><span class="hide-menu">Dashboard</span></a>
+                                                                     aria-hidden="true"></i><span class="hide-menu">Tổng quan</span></a>
                 </li>
                 <li>
                     <a href="/crm/user" class="waves-effect"><i class="fa fa-user fa-fw"
@@ -111,14 +113,6 @@
                     <a href="/crm/task" class="waves-effect"><i class="fa fa-table fa-fw"
                                                                 aria-hidden="true"></i><span
                             class="hide-menu">Công việc</span></a>
-                </li>
-                <li>
-                    <a href="/crm/blank" class="waves-effect"><i class="fa fa-columns fa-fw"
-                                                                 aria-hidden="true"></i><span class="hide-menu">Blank Page</span></a>
-                </li>
-                <li>
-                    <a href="/crm/alert" class="waves-effect"><i class="fa fa-info-circle fa-fw"
-                                                                 aria-hidden="true"></i><span class="hide-menu">Error 404</span></a>
                 </li>
             </ul>
         </div>
@@ -241,7 +235,13 @@
                     $("#input-user").val("option-none").change();
                     $("#input-job").val("option-none").change();
                 } else {
-                    alert("UNSUCCESSFUL");
+                    if (response.message == "NOT PERMISSION") {
+                        alert("YOU ARE NOT PERMISSION");
+
+                        window.location.href = "/crm/dashboard";
+                    } else {
+                        alert("UNSUCCESSFUL");
+                    }
                 }
             },
             error: function () {

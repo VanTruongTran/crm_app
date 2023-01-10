@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
-    <title>Pixel Admin</title>
+    <title>CRM</title>
     <!-- Bootstrap Core CSS -->
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Menu CSS -->
@@ -68,12 +68,14 @@
                 <li>
                     <div class="dropdown">
                         <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#">
-                            <img src="plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"/>
-                            <b class="hidden-xs">${sessionScope.usersModel.fullname}</b>
+                            <img src="${sessionScope.usersModel.avatar}"
+                                 onerror="this.src='plugins/images/users-default/users-default.jpg'"
+                                 alt="user-img" width="36" class="img-circle"/>
+                            <b class="hidden-xs">${sessionScope.usersModel.fullname}
+                                | ${sessionScope.usersModel.rolesModel.name}</b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="/crm/profile?id=${sessionScope.usersModel.id}">Thông tin cá nhân</a></li>
-                            <li><a href="#">XXXXXXXX Thống kê công việc</a></li>
+                            <li><a href="/crm/profile?id=${sessionScope.usersModel.id}">Thống kê công việc</a></li>
                             <li class="divider"></li>
                             <li><a href="/crm/logout">Đăng xuất</a></li>
                         </ul>
@@ -91,7 +93,7 @@
             <ul class="nav" id="side-menu">
                 <li style="padding: 10px 0 0;">
                     <a href="/crm/dashboard" class="waves-effect"><i class="fa fa-clock-o fa-fw"
-                                                                     aria-hidden="true"></i><span class="hide-menu">Dashboard</span></a>
+                                                                     aria-hidden="true"></i><span class="hide-menu">Tổng quan</span></a>
                 </li>
                 <li>
                     <a href="/crm/user" class="waves-effect"><i class="fa fa-user fa-fw"
@@ -111,14 +113,6 @@
                                                                 aria-hidden="true"></i><span
                             class="hide-menu">Công việc</span></a>
                 </li>
-                <li>
-                    <a href="/crm/blank" class="waves-effect"><i class="fa fa-columns fa-fw"
-                                                                 aria-hidden="true"></i><span class="hide-menu">Blank Page</span></a>
-                </li>
-                <li>
-                    <a href="/crm/alert" class="waves-effect"><i class="fa fa-info-circle fa-fw"
-                                                                 aria-hidden="true"></i><span class="hide-menu">Error 404</span></a>
-                </li>
             </ul>
         </div>
     </div>
@@ -135,12 +129,18 @@
             <!-- .row -->
             <div class="row">
                 <div class="col-md-4 col-xs-12">
-                    <div class="white-box">
-                        <div class="user-bg"><img width="100%" alt="user" src="plugins/images/large/img1.jpg">
+                    <div style="height:200px;padding:0;" class="white-box">
+                        <div style="height:100%;margin:0;" class="user-bg">
+                            <img style="height:100%;width:100%;object-fit:cover;" alt="user"
+                                 src="${usersModel.avatar}"
+                                 onerror="this.src='plugins/images/users-default/user-bg-default.jpg'">
                             <div class="overlay-box">
-                                <div class="user-content">
-                                    <a href="javascript:void(0)"><img src="plugins/images/users/genu.jpg"
-                                                                      class="thumb-lg img-circle" alt="img"></a>
+                                <div style="margin-top:10px;" class="user-content">
+                                    <a href="javascript:void(0)">
+                                        <img src="${usersModel.avatar}"
+                                             onerror="this.src='plugins/images/users-default/users-default.jpg'"
+                                             class="thumb-lg img-circle" alt="img">
+                                    </a>
                                     <h4 class="text-white">${usersModel.fullname}</h4>
                                     <h5 class="text-white">${usersModel.email}</h5>
                                 </div>
@@ -153,7 +153,7 @@
                     <div class="row">
                         <!--col -->
                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                            <div class="white-box">
+                            <div style="height:200px;" class="white-box">
                                 <div class="col-in row">
                                     <div class="col-xs-12">
                                         <h3 class="counter text-right m-t-15 text-danger">${numberOfNewTask}</h3>
@@ -175,7 +175,7 @@
                         <!-- /.col -->
                         <!--col -->
                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                            <div class="white-box">
+                            <div style="height:200px;" class="white-box">
                                 <div class="col-in row">
                                     <div class="col-xs-12">
                                         <h3 class="counter text-right m-t-15 text-megna">${numberOfProgressTask}</h3>
@@ -197,7 +197,7 @@
                         <!-- /.col -->
                         <!--col -->
                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                            <div class="white-box">
+                            <div style="height:200px;" class="white-box">
                                 <div class="col-in row">
                                     <div class="col-xs-12">
                                         <h3 class="counter text-right m-t-15 text-primary">${numberOfCompleledTask}</h3>
@@ -219,10 +219,8 @@
                         <!-- /.col -->
                     </div>
                     <!-- END THỐNG KÊ -->
-
                 </div>
             </div>
-            <br/>
             <!-- /.row -->
             <!-- BEGIN DANH SÁCH CÔNG VIỆC -->
             <h4>DANH SÁCH CÔNG VIỆC</h4>
@@ -233,7 +231,7 @@
                         <div class="message-center">
                             <c:forEach var="tasksModel" items="${tasksModelList}">
                                 <c:if test="${tasksModel.statusModel.id == 1}">
-                                    <a href="#">
+                                    <a>
                                         <div class="mail-contnet">
                                             <h5>${tasksModel.name}</h5>
                                             <span class="mail-desc"></span>
@@ -252,7 +250,7 @@
                         <div class="message-center">
                             <c:forEach var="tasksModel" items="${tasksModelList}">
                                 <c:if test="${tasksModel.statusModel.id == 2}">
-                                    <a href="#">
+                                    <a>
                                         <div class="mail-contnet">
                                             <h5>${tasksModel.name}</h5>
                                             <span class="mail-desc"></span>
@@ -271,7 +269,7 @@
                         <div class="message-center">
                             <c:forEach var="tasksModel" items="${tasksModelList}">
                                 <c:if test="${tasksModel.statusModel.id == 3}">
-                                    <a href="#">
+                                    <a>
                                         <div class="mail-contnet">
                                             <h5>${tasksModel.name}</h5>
                                             <span class="mail-desc"></span>

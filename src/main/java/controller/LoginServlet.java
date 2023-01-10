@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
@@ -34,7 +35,11 @@ public class LoginServlet extends HttpServlet {
 
             resp.sendRedirect(req.getContextPath() + "/dashboard");
         } else {//nếu không tìm thấy user
-            req.getRequestDispatcher("/login.html").forward(req, resp);
+            PrintWriter printWriter = resp.getWriter();
+            printWriter.println("<script type=\"text/javascript\">");
+            printWriter.println("alert('LOG IN UNSUCCESSFUL');");
+            printWriter.println("location='" + req.getContextPath() + "/login';");
+            printWriter.println("</script>");
         }
     }
 }

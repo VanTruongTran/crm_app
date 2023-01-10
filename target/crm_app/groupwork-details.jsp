@@ -18,7 +18,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
-    <title>Pixel Admin</title>
+    <title>CRM</title>
     <!-- Bootstrap Core CSS -->
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Menu CSS -->
@@ -78,12 +78,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li>
                     <div class="dropdown">
                         <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#">
-                            <img src="plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"/>
-                            <b class="hidden-xs">${sessionScope.usersModel.fullname}</b>
+                            <img src="${sessionScope.usersModel.avatar}"
+                                 onerror="this.src='plugins/images/users-default/users-default.jpg'"
+                                 alt="user-img" width="36" class="img-circle"/>
+                            <b class="hidden-xs">${sessionScope.usersModel.fullname}
+                                | ${sessionScope.usersModel.rolesModel.name}</b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="/crm/profile?id=${sessionScope.usersModel.id}">Thông tin cá nhân</a></li>
-                            <li><a href="#">XXXXXXXX Thống kê công việc</a></li>
+                            <li><a href="/crm/profile?id=${sessionScope.usersModel.id}">Thống kê công việc</a></li>
                             <li class="divider"></li>
                             <li><a href="/crm/logout">Đăng xuất</a></li>
                         </ul>
@@ -101,7 +103,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="nav" id="side-menu">
                 <li style="padding: 10px 0 0;">
                     <a href="/crm/dashboard" class="waves-effect"><i class="fa fa-clock-o fa-fw"
-                                                                     aria-hidden="true"></i><span class="hide-menu">Dashboard</span></a>
+                                                                     aria-hidden="true"></i><span class="hide-menu">Tổng quan</span></a>
                 </li>
                 <li>
                     <a href="/crm/user" class="waves-effect"><i class="fa fa-user fa-fw"
@@ -121,14 +123,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 aria-hidden="true"></i><span
                             class="hide-menu">Công việc</span></a>
                 </li>
-                <li>
-                    <a href="/crm/blank" class="waves-effect"><i class="fa fa-columns fa-fw"
-                                                                 aria-hidden="true"></i><span class="hide-menu">Blank Page</span></a>
-                </li>
-                <li>
-                    <a href="/crm/alert" class="waves-effect"><i class="fa fa-info-circle fa-fw"
-                                                                 aria-hidden="true"></i><span class="hide-menu">Error 404</span></a>
-                </li>
             </ul>
         </div>
     </div>
@@ -142,9 +136,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
                 <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                     <ol class="breadcrumb">
-                        <li>Dự án: ${jobsModel.name}</li>
-                        <li>Bắt đầu: ${jobsModel.startDate}</li>
-                        <li>Kết thúc: ${jobsModel.endDate}</li>
+                        <li><b>Dự án: ${jobsModel.name} | Bắt đầu: ${jobsModel.startDate} | Kết
+                            thúc: ${jobsModel.endDate}</b></li>
                     </ol>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -228,7 +221,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="row">
                     <div class="col-xs-12">
                         <a href="/crm/user-details?id=${usersModel.id}" class="group-title">
-                            <img width="30" src="plugins/images/users/pawandeep.jpg" class="img-circle"/>
+                            <img src="${usersModel.avatar}"
+                                 onerror="this.src='plugins/images/users-default/users-default.jpg'"
+                                 width="30" class="img-circle"/>
                             <span>${usersModel.fullname}</span>
                         </a>
                     </div>
@@ -238,7 +233,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="message-center">
                                 <c:forEach var="tasksModel" items="${tasksModelList}">
                                     <c:if test="${tasksModel.usersModel.id == usersModel.id && tasksModel.statusModel.id == 1}">
-                                        <a href="#">
+                                        <a>
                                             <div class="mail-contnet">
                                                 <h5>${tasksModel.name}</h5>
                                                 <span class="mail-desc"></span>
@@ -257,7 +252,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="message-center">
                                 <c:forEach var="tasksModel" items="${tasksModelList}">
                                     <c:if test="${tasksModel.usersModel.id == usersModel.id && tasksModel.statusModel.id == 2}">
-                                        <a href="#">
+                                        <a>
                                             <div class="mail-contnet">
                                                 <h5>${tasksModel.name}</h5>
                                                 <span class="mail-desc"></span>
@@ -276,7 +271,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="message-center">
                                 <c:forEach var="tasksModel" items="${tasksModelList}">
                                     <c:if test="${tasksModel.usersModel.id == usersModel.id && tasksModel.statusModel.id == 3}">
-                                        <a href="#">
+                                        <a>
                                             <div class="mail-contnet">
                                                 <h5>${tasksModel.name}</h5>
                                                 <span class="mail-desc"></span>
